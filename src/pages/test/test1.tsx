@@ -8,13 +8,13 @@ const localizer = momentLocalizer(moment);
 const events = [
   {
     title: 'เหตุการณ์ที่ 1',
-    start: new Date(2023, 9, 1),
-    end: new Date(2023, 9, 2),
+    start: new Date(2023, 9, 5),
+    end: new Date(2023, 9, 5),
   },
   {
     title: 'เหตุการณ์ที่ 2',
-    start: new Date(2023, 9, 5),
-    end: new Date(2023, 9, 7),
+    start: new Date(2023, 9, 2),
+    end: new Date(2023, 9, 3),
   },
   // เพิ่มเหตุการณ์เพิ่มเติมที่นี่
 ];
