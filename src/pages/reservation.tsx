@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LayoutPages from '../components/layout';
 import useAxios from 'axios-hooks';
+import Link from "next/link";
 
 export default function Home() {
     const [{ error: errorMessage, loading: IndexActivityLoading }, executeIndexActivity] = useAxios(
@@ -236,10 +237,12 @@ export default function Home() {
                         ></textarea>
                     </div>
                     <div className=" flex justify-between">
+                        <Link href={"/"}>
                         <button className="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
                             ย้อนกลับ
                             <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
                         </button>
+                        </Link>
                         <button disabled={isLoading}
                             onClick={handleSubmit} className="group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white">
                             ยืนยัน

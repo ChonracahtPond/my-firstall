@@ -2,75 +2,55 @@ import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { Mark } from '@prisma/client';
+import Link from 'next/link';
 
-const localizer = momentLocalizer(moment);
+interface Mark {
+  id: number;
+  date: string;
+  time: string;
+  name: string;
+  location: string;
+  cusname: string;
+  tel: string;
+  nameAE: string;
+  messages: string;
+}
 
-const MyCalendar = () => {
-
-
-
-    const [filteredregfromsData, setFilteredregfromsData] = useState<
-    Mark[]
-  >([]);
-
-    const [events, setEvents] = useState([]);
-
-    useEffect(() => {
-        const fetchDataFromApi = async () => {
-            try {
-                // ดึงข้อมูลจาก API
-                const response = await fetch('api/mark');
-                if (!response.ok) {
-                    throw new Error('ไม่สามารถดึงข้อมูลได้');
-                }
-
-                // แปลงข้อมูล JSON จาก API
-                const filterMarkData = await response.json();
-
-                // สร้าง events ที่เหมาะสมสำหรับปฏิทิน
-                const calendarEvents = filterMarkData.map((item: { title: any; date: string | number | Date; }) => ({
-                    title: item.title, // ชื่อเหตุการณ์
-                    start: new Date(item.date), // วันเริ่มต้นเหตุการณ์
-                    end: new Date(item.date), // วันสิ้นสุดเหตุการณ์
-                }));
-
-                setEvents(calendarEvents);
-            } catch (error) {
-                console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
-            }
-        };
-
-        fetchDataFromApi();
-    }, []);
-
-
-    // const events = [
-    //     {
-    //         title: 'เหตุการณ์ที่ 1',
-    //         start: new Date(2023, 9, 5),
-    //         end: new Date(2023, 9, 5), 
-    //     },
-    //     {
-    //         title: 'เหตุการณ์ที่ 2',
-    //         start: new Date(2023, 9, 2),
-    //         end: new Date(2023, 9, 3),
-    //     },
-     
-    // ];
-
-
-    return (
-        <div>
-            <Calendar
-                localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500 }}
-            />
-        </div>
-    );
+const convertMarksToEvents = (marks: Mark[]) => {
+  return marks.map((mark) => {
+    return {
+      title: mark.name,
+      start: new Date(mark.date),
+      end: new Date(mark.date),
+    };
+  });
 };
+
+function MyCalendar() {
+  const [markData, setMarkData] = useState<Mark[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const localizer = momentLocalizer(moment);
+
+  return (
+    <div>
+      <Calendar
+        localizer={localizer}
+        events={markData}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+        onSelectEvent={(event: any) => {
+          // แสดงข้อความแจ้งเตือนเมื่อคลิกที่เหตุการณ์
+          window.alert('เหตุการณ์ถูกคลิก: ' + event.title);
+        }}
+        onSelectSlot={(slotInfo: any) => {
+          // แสดงข้อความแจ้งเตือนเมื่อเลือกช่วงเวลา
+          window.alert('ช่วงเวลาถูกเลือก: ' + slotInfo.start);
+        }}
+      />
+    </div>
+  );
+}
 
 export default MyCalendar;
