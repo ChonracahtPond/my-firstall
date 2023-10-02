@@ -39,7 +39,7 @@ function Lastwork() {
       .then((response) => response.json())
       .then((data: { mark: Mark[] }) => {
         const eventsData = convertMarksToEvents(data.mark);
-        setMarkData(eventsData); // แก้ไขเป็น eventsData ไม่ใช่ markData
+        setMarkData(markData); // แก้ไขเป็น eventsData ไม่ใช่ markData
         setIsLoading(false);
       })
       .catch((error) => {
