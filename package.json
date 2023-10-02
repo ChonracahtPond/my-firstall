@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "generate-prisma": "npx prisma generate",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
+
+    
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
