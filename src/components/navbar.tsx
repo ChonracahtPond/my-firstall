@@ -7,20 +7,22 @@ import Link from 'next/link';
 
 export default function Navbar() {
     return (
+      
       <div className='w-full h-[70px] bg-[#049112]'>
         <div className='flex justify-end items-center h-full text-white text-xl mr-5'>
-          <Link href={'/'} className='mx-2'>
+          <Link href={'/manage'} className='mx-2'>
             หน้าแรก
           </Link>
           <Link href={'calendar'} className='mx-2'>
-            ปฎิทินงาน
+            คิวงาน
           </Link>
           <Link href={'reservation'} className='mx-2'>
             จองคิวงาน
           </Link>
-          <Link href={'#'} className='mx-2'>
-            ตั้งค่า
+          <Link href={'/lastwork'} className='mx-2'>
+          ปฏิทินงาน
           </Link>
+         
         </div>
       </div>
     );
