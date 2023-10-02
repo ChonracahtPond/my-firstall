@@ -20,4 +20,5 @@ model Mark {
   tel      String?
   nameAE   String?
   messages String?
+  status   String  @default("ยังไม่รับงาน")
 }
