@@ -23,8 +23,8 @@ export default function Manage() {
                         <Link href={'/reservation'} className="text-xl w-[150px] h-[150px] flex items-center justify-center mx-5 border border-black">
                             จองคิวงาน
                         </Link>
-                        <Link href={'/seting'} className="text-xl w-[150px] h-[150px] bg-black flex items-center justify-center text-white mx-5">
-                            ตั้งค่า
+                        <Link href={'/lastwork'} className="text-xl w-[150px] h-[150px] bg-black flex items-center justify-center text-white mx-5">
+                        ปฏิทินงาน
                         </Link>
                     </div>
 

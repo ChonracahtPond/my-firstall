@@ -22,12 +22,13 @@ function TabComponent() {
         fetch('/api/mark')
             .then((response) => response.json())
             .then((data) => {
-                // Sort the markData array by date property
-                const sortedMarkData = data.mark.sort((b: { date: string | number | Date; }, a: { date: string | number | Date; }) => {
-                    // Replace 'date' with your actual date property name
-                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                // เรียงลำดับ markData ตามฟิลด์ date จากล่าสุดไปยังเก่าสุด
+                const sortedMarkData = data.mark.sort((a: { date: string | number | Date; }, b: { date: string | number | Date; }) => {
+                    const dateA = new Date(a.date);
+                    const dateB = new Date(b.date);
+                    return dateB.getTime() - dateA.getTime();
                 });
-
+    
                 setMarkData(sortedMarkData);
                 setIsLoading(false);
             })
@@ -36,6 +37,7 @@ function TabComponent() {
                 setIsLoading(false);
             });
     }, []);
+    
 
     return (
        <div >
